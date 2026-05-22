@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CategoryCard from '../components/CategoryCard';
 import ProductCardWithFavorites from '../components/ProductCardWithFavorites';
@@ -22,8 +22,8 @@ export function Home() {
 	} = useProducts();
 	const { searchTerm, clearSearch } = useSearch();
 
-	const handleOpen = () => setShowWelcome(true);
-	const handleClose = () => setShowWelcome(false);
+	const handleOpen = useCallback(() => setShowWelcome(true), []);
+	const handleClose = useCallback(() => setShowWelcome(false), []);
 
 	const handleCategoryClick = (categoryId: string | number) => {
 		setSelectedCategory(categoryId);
